@@ -1,7 +1,7 @@
 var Friends = {
-    // username: [friend list]
-    toggleStatus: function() {
+  // username: [friend list]
+  toggleStatus: function() {
         
-    }
+  }
 
 };
