@@ -1,18 +1,26 @@
 {
   "name": "chatterbox-client",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Build a component-based chat-client using jQuery",
+  "main": "index.html",
+  "scripts": {
+    "test": "open ./SpecRunner.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zouboyun/hrsf105-chatterbox-client.git"
+  },
+  "author": "zouboyun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zouboyun/hrsf105-chatterbox-client/issues"
+  },
+  "homepage": "https://github.com/zouboyun/hrsf105-chatterbox-client#readme",
   "dependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "jquery": "^3.3.1",
     "mocha": "^5.2.0",
     "sinon": "^6.3.4",
     "underscore": "^1.9.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "open ./SpecRunner.html"
-  },
-  "author": "Hack Reactor <curriculum.team@hackreactor.com>",
-  "license": "UNLICENSED"
+  }
 }
