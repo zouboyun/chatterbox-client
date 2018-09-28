@@ -5,8 +5,8 @@ var MessagesView = {
   initialize: function() {
   },
 
-  renderMessage: function(message) {
-    var message = $('<p></p>').text(message.text);
+  renderMessage: function(messageObj) {
+    var message = $('<p></p>').text(messageObj.text);
     MessagesView.$chats.append(message);
   }
 
