@@ -6,7 +6,9 @@ var RoomsView = {
   initialize: function() {
   },
 
-  render: function() {
+  renderRoom: function(roomName) {
+    var newroom = $('<div></div>').text(roomName);
+    RoomsView.$select.append(newroom);
   }
 
 };
