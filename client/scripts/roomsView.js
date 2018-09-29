@@ -4,8 +4,12 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    // event handlers
     RoomsView.$button.on('click', function() {
       Rooms.add();
+    });
+    RoomsView.$select.change(function() {
+      MessagesView.renderMessage();
     });
   },
 
@@ -13,8 +17,11 @@ var RoomsView = {
     <option><%-roomname%></option>
   `),
 
-  renderRoom: function(roomname) {
-    RoomsView.$select.append(RoomsView.render({roomname: roomname}));
+  renderRoom: function() {
+    RoomsView.$select.empty();
+    Rooms.roomsStorage.forEach(roomname => {
+      RoomsView.$select.append(RoomsView.render({roomname: roomname}));
+    });
   }
 
 };

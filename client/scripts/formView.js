@@ -13,9 +13,10 @@ var FormView = {
     var text = $('#message').val();
     $('#message').val('');
     var message = Messages.create(App.username, text, room);
-    Parse.create(message, null, null);
-    MessagesView.renderMessage(message);
-    console.log('click!', message);
+    App.send(message);
+    Messages.messagesStorage[room].push([App.username, text]);
+    MessagesView.renderMessage();
+    // console.log('click!', message);
   },
 
   setStatus: function(active) {

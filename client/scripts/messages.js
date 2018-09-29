@@ -1,22 +1,6 @@
 var Messages = {
 
-  messages: {}, // store messages in local storage
-
-  render: function(messageObjArr, selectedroomname) {
-    for (var i = 0; i < 10; i++) {
-      var username = messageObjArr[i].username;
-      var text = messageObjArr[i].text;
-      var roomname = messageObjArr[i].roomname;
-      var msg = {
-        username: username,
-        text: text,
-        roomname: roomname
-      };
-      if (roomname === selectedroomname) {
-        MessagesView.renderMessage(msg);
-      }
-    }
-  },
+  messagesStorage: {}, // store messages in local storage, obj key is roomname, value is an array of messages in that room
 
   create: function(username, text, roomname) {
     return {
@@ -26,15 +10,19 @@ var Messages = {
     };
   },
 
-  beautify: function(messageObj) {
-    if (messageObj.roomname.length === 0) {
-      messageObj.roomname = 'empty room';
-    }
-    if (messageObj.text.length > 100) {
-      messageObj.text = messageObj.text.substring(0, 100);
-    }
-    if (messageObj.roomname.length > 100) {
-      messageObj.roomname = messageObj.roomname.substring(0, 100);
-    }
+  set: function(serverData) {
+    // push to messagesStorage based on their roomname
+    Rooms.roomsStorage.forEach(roomname => {
+      Messages.messagesStorage[roomname] = [];
+    });
+    serverData.forEach(messageObj => {
+      if (Messages.messagesStorage[messageObj.roomname] !== undefined) {
+        Messages.messagesStorage[messageObj.roomname].push([messageObj.username, messageObj.text]);
+      }
+    });
+  },
+
+  render: function() {
+    MessagesView.renderMessage();
   }
 };

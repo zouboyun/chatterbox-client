@@ -1,31 +1,30 @@
 var Rooms = {
 
-  existingRooms: {}, // store all the rooms in local storage
+  roomsStorage: new Set(), // store all the rooms in local storage
 
   add: function() {
     var newroom = prompt('please input your new room name', 'default');
-    RoomsView.renderRoom(newroom);
+    Rooms.roomsStorage.add(newroom);
+    Messages.messagesStorage[newroom] = Messages.messagesStorage[newroom] || [];
+    RoomsView.renderRoom();
+    RoomsView.$select.val(newroom);
+    // console.log(Rooms.roomsStorage);
   },
 
-  get: function() {
-
-  },
-
-  render: function(results) {
-    var rooms = [];
-    results.forEach(result => {
-      if (result.roomname !== undefined && result.text !== undefined) {
-        if (result.roomname.length > 50) {
-          result.roomname = result.roomname.substring(0, 50);
-        }
-        if (!rooms.includes(result.roomname)) {
-          rooms.push(result.roomname);
+  set: function(serverData) {
+    // push to roomsStorage
+    serverData.forEach(messageObj => {
+      var roomname = messageObj.roomname;
+      if (roomname !== undefined) {
+        if (roomname.length > 0) {
+          Rooms.roomsStorage.add(roomname);
         }
       }
     });
-    rooms.forEach(room => {
-      RoomsView.renderRoom(room);
-    });
-  }
+    // console.log(Rooms.roomsStorage);
+  },
 
+  render: function() {
+    RoomsView.renderRoom();
+  }
 };
