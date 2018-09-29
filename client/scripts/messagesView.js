@@ -3,6 +3,7 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
+
   },
 
   render: function() {
@@ -10,7 +11,7 @@ var MessagesView = {
   },
 
   renderMessage: function(messageObj) {
-    MessagesView.$chats.append(MessageView.render(messageObj));
+    MessagesView.$chats.prepend(MessageView.render(messageObj));
     $('.username').on('click', function() {
       Friends.toggleStatus();
     });

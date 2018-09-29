@@ -22,8 +22,10 @@ var App = {
       // examine the response from the server request:
       console.log(data);
       console.log(App.username);
-      Messages.render(data.results);
       Rooms.render(data.results);
+      var selectedroom = $('#rooms select :selected').text();
+      Messages.render(data.results, selectedroom);
+      
       callback();
     });
   },
