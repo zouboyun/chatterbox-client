@@ -5,14 +5,13 @@ var MessagesView = {
   initialize: function() {
   },
 
+  render: function() {
+
+  },
+
   renderMessage: function(messageObj) {
-    var message = $('<div></div>');
-    var username = $('<a class="username"></a>').text(`${messageObj.username} says: `);
-    var text = $('<p></p>').text(messageObj.text);
-    var room = $('<p></p>').text(messageObj.roomname);
-    message.append(username, text, room);
-    MessagesView.$chats.append(message);
-    username.on('click', function() {
+    MessagesView.$chats.append(MessageView.render(messageObj));
+    $('.username').on('click', function() {
       Friends.toggleStatus();
     });
   }
